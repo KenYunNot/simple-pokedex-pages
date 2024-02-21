@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model Pokemon {
+  id             Int            @id
+  name           String         @db.VarChar(255)
+  image_url      String         @db.VarChar(255)
+  sprite_url     String         @db.VarChar(255)
+  species_id     Int
+  is_default     Boolean
+  form_name      String?        @db.VarChar(255)
+  abilities      String[]
+  height         Int
+  weight         Int
+  PokemonSpecies PokemonSpecies @relation(fields: [species_id], references: [id])
+  Type           Type[]
+}
+
+model PokemonSpecies {
+  id              Int       @id
+  name            String    @db.VarChar(255)
+  full_name       String    @db.VarChar(255)
+  base_happiness  Int
+  capture_rate    Int
+  flavor_texts    String[]
+  gender_rate     Int
+  growth_rate     String
+  is_legendary    Boolean
+  is_mythical     Boolean
+  genus           String?
+  egg_cycles      Int
+  egg_groups      String[]
+  left_full_name  String?
+  right_full_name String?
+  left_name       String?
+  right_name      String?
+  Pokemon         Pokemon[]
+}
+
+model Type {
+  id                  Int       @id
+  name                String    @db.VarChar(255)
+  Type_DoubleDamage_A Type[]    @relation("DoubleDamage")
+  Type_DoubleDamage_B Type[]    @relation("DoubleDamage")
+  Type_HalfDamage_A   Type[]    @relation("HalfDamage")
+  Type_HalfDamage_B   Type[]    @relation("HalfDamage")
+  Type_NoDamage_A     Type[]    @relation("NoDamage")
+  Type_NoDamage_B     Type[]    @relation("NoDamage")
+  Pokemon             Pokemon[]
+}
+
+model User {
+  id        String   @id
+  username  String   @unique
+  email     String   @unique
+  password  String
+  isAdmin   Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
