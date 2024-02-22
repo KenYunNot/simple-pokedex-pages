@@ -6,8 +6,9 @@ export default function Navbar() {
       <Image 
         src='/logo.png'
         width={300}
-        height={75}
+        height={77}
         alt="Simple Pokedex logo"
+        priority={true}
       />
     </nav>
   )
