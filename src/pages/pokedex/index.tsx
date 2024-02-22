@@ -1,52 +1,39 @@
-import prisma from "@/lib/db";
-import type { PokemonBasic } from "@/lib/types/pokemon";
-
+import Link from "next/link";
 import { GetServerSidePropsContext } from "next";
 
+import { fetchPokemonList } from "@/lib/db/pokemon";
+
 import PokemonCard from "@/lib/ui/components/pokemon-card";
-import { Fragment } from "react";
+import { PokemonBasic } from "@/lib/types/pokemon";
 
-
-export default function Pokedex({ pokemonList } : { pokemonList: PokemonBasic[] }) {
+export default function Pokedex({
+  pokemonList,
+}: {
+  pokemonList: PokemonBasic[];
+}) {
   return (
-    <div>
-      {pokemonList.map(pokemon => {
+    <div className="grid grid-cols-1 gap-2">
+      {pokemonList.map((pokemon) => {
         return (
-          <Fragment key={pokemon.id}>
+          <Link href={`/pokedex/${pokemon.id}`} key={pokemon.id}>
             <PokemonCard pokemon={pokemon} />
-          </Fragment>
-        )
+          </Link>
+        );
       })}
     </div>
-  )
+  );
 }
 
-const ITEMS_PER_PAGE = 10;
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { query } = context;
   const page = Number(query.page) || 1;
   const search = query.search ? String(query.search) : "";
-  const OFFSET = ITEMS_PER_PAGE * (page - 1);
-
-  const pokemonList: PokemonBasic[] = await prisma.pokemon.findMany({
-    where: {
-      name: {
-        contains: search,
-      },
-      is_default: true,
-    },
-    select: {
-      id: true,
-      name: true,
-      image_url: true,
-    },
-    skip: OFFSET,
-    take: ITEMS_PER_PAGE,
-  });
+  
+  const pokemonList = await fetchPokemonList(page, search);
 
   return {
     props: {
       pokemonList,
-    }
-  }
+    },
+  };
 }
