@@ -9,51 +9,54 @@ datasource db {
 }
 
 model Pokemon {
-  id             Int            @id
-  name           String         @db.VarChar(255)
-  image_url      String         @db.VarChar(255)
-  sprite_url     String         @db.VarChar(255)
-  species_id     Int
-  is_default     Boolean
-  form_name      String?        @db.VarChar(255)
-  abilities      String[]
-  height         Int
-  weight         Int
-  PokemonSpecies PokemonSpecies @relation(fields: [species_id], references: [id])
-  Type           Type[]
+  id         Int            @id
+  name       String         @db.VarChar(255)
+  form_name  String?        @db.VarChar(255)
+  abilities  String[]
+  image_url  String         @db.VarChar(255)
+  sprite_url String         @db.VarChar(255)
+  species_id Int
+  is_default Boolean
+  height     Int
+  weight     Int
+
+  species    PokemonSpecies @relation(fields: [species_id], references: [id])
+  types      Type[]
 }
 
 model PokemonSpecies {
   id              Int       @id
   name            String    @db.VarChar(255)
   full_name       String    @db.VarChar(255)
-  base_happiness  Int
-  capture_rate    Int
-  flavor_texts    String[]
-  gender_rate     Int
-  growth_rate     String
-  is_legendary    Boolean
-  is_mythical     Boolean
-  genus           String?
-  egg_cycles      Int
-  egg_groups      String[]
-  left_full_name  String?
-  right_full_name String?
   left_name       String?
   right_name      String?
-  Pokemon         Pokemon[]
+  left_full_name  String?
+  right_full_name String?
+  base_happiness  Int
+  capture_rate    Int
+  egg_cycles      Int
+  egg_groups      String[]
+  growth_rate     String
+  flavor_texts    String[]
+  gender_rate     Int
+  genus           String?
+  is_legendary    Boolean
+  is_mythical     Boolean
+  
+  pokemon         Pokemon[]
 }
 
 model Type {
-  id                  Int       @id
-  name                String    @db.VarChar(255)
-  Type_DoubleDamage_A Type[]    @relation("DoubleDamage")
-  Type_DoubleDamage_B Type[]    @relation("DoubleDamage")
-  Type_HalfDamage_A   Type[]    @relation("HalfDamage")
-  Type_HalfDamage_B   Type[]    @relation("HalfDamage")
-  Type_NoDamage_A     Type[]    @relation("NoDamage")
-  Type_NoDamage_B     Type[]    @relation("NoDamage")
-  Pokemon             Pokemon[]
+  id                 Int       @id
+  name               String    @db.VarChar(255)
+
+  double_damage_from Type[]    @relation("DoubleDamage")
+  double_damage_to   Type[]    @relation("DoubleDamage")
+  half_damage_from   Type[]    @relation("HalfDamage")
+  half_damage_to     Type[]    @relation("HalfDamage")
+  no_damage_from     Type[]    @relation("NoDamage")
+  no_damage_to       Type[]    @relation("NoDamage")
+  pokemon            Pokemon[]
 }
 
 model User {
