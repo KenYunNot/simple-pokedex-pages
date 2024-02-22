@@ -110,6 +110,7 @@ export async function fetchPokemonByName(name: string): Promise<Pokemon | null> 
   return {
     id: pokemon.id,
     name: pokemon.name,
+    full_name: pokemon.species.full_name,
     abilities: pokemon.abilities,
     image_url: pokemon.image_url,
     height: pokemon.height,
