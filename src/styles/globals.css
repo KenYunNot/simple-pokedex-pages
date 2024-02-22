@@ -26,6 +26,82 @@
     rgb(var(--background-start-rgb));
 } */
 
+.bug {
+  background-color: rgb(142, 165, 10); 
+}
+
+.dark {
+  background-color: rgb(29, 29, 29); 
+}
+
+.dragon {
+  background-color: rgb(54, 0, 202); 
+}
+
+.electric {
+  background-color: rgb(255, 204, 51); 
+}
+
+.fairy {
+  background-color: rgb(255, 152, 169); 
+}
+
+.fighting {
+  background-color: rgb(167, 30, 30); 
+}
+
+.fire {
+  background-color: #f42; 
+}
+
+.flying {
+  background-color: rgb(142, 227, 255); 
+}
+
+.ghost {
+  background-color: rgb(65, 63, 129); 
+}
+
+.grass {
+  background-color: rgb(33, 194, 19); 
+}
+
+.ground {
+  background-color: rgb(206, 175, 0); 
+}
+
+.ice {
+  background-color: #6cf
+}
+
+.normal {
+  background-color: #aa9; 
+}
+
+.poison {
+  background-color: purple; 
+}
+
+.psychic {
+  background-color: rgb(221, 54, 82); 
+}
+
+.rock {
+  background-color: rgb(148, 148, 101); 
+}
+
+.steel {
+  background-color: rgb(199, 199, 199); 
+}
+
+.water {
+  background-color: rgb(17, 132, 247); 
+}
+
+.text-shadow {
+  text-shadow: 0px 1px 4px black;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
