@@ -18,6 +18,7 @@ export type PokemonBasic = {
 export type Pokemon = {
   id: number,
   name: string,
+  full_name: string,
   abilities: string[],
   image_url: string,
   height: number,
