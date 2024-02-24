@@ -1,8 +1,18 @@
 import { Type } from "@prisma/client"
 
+export type TypeWithRelations = {
+  double_damage_from: Type[],
+  double_damage_to: Type[],
+  half_damage_from: Type[],
+  half_damage_to: Type[],
+  no_damage_from: Type[],
+  no_damage_to: Type[],
+} & Type;
+
 // In all use cases, if the fields are null the DexPointer itself will be represented as null.
 // This is only to satisfy the Typescript conditions
-export type DexPointer = {
+export type AdjacentPokemon = {
+  id: number,
   name: string | null,
   full_name: string | null,
 };
@@ -26,7 +36,8 @@ export type Pokemon = {
   genus: string,
   flavor_texts: string[],
   gender_rate: number,
-  left: DexPointer | null,
-  right: DexPointer | null,
+  left: AdjacentPokemon | null,
+  right: AdjacentPokemon | null,
   is_default: boolean,
+  types: Type[],
 }
