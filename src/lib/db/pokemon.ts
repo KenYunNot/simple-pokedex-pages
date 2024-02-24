@@ -1,6 +1,6 @@
 import prisma from "./prisma";
 
-import type { DexPointer, PokemonBasic, Pokemon } from "@/lib/types/pokemon";
+import type { AdjacentPokemon, PokemonBasic, Pokemon } from "@/lib/types/pokemon";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -80,7 +80,16 @@ export async function fetchPokemonByName(name: string): Promise<Pokemon | null> 
           is_mythical: true,
         },
       },
-      types: true,
+      types: {
+        include: {
+          double_damage_from: true,
+          double_damage_to: true,
+          half_damage_from: true,
+          half_damage_to: true,
+          no_damage_from: true,
+          no_damage_to: true,
+        }
+      },
     },
   });
 
@@ -91,16 +100,18 @@ export async function fetchPokemonByName(name: string): Promise<Pokemon | null> 
   // If id is greater than 1, left will always exist
   // If id is less than count, right will always exist
   const count = await countPokemon();
-  let left: DexPointer | null = null;
-  let right: DexPointer | null = null;
+  let left: AdjacentPokemon | null = null;
+  let right: AdjacentPokemon | null = null;
   if (pokemon.id > 1) {
     left = {
+      id: pokemon.id-1,
       name: pokemon.species.left_name,
       full_name: pokemon.species.left_full_name,
     }
   }
   if (pokemon.id < count) {
     right = {
+      id: pokemon.id+1,
       name: pokemon.species.right_name,
       full_name: pokemon.species.right_full_name,
     }
@@ -121,6 +132,7 @@ export async function fetchPokemonByName(name: string): Promise<Pokemon | null> 
     left,
     right,
     is_default: pokemon.is_default,
+    types: pokemon.types,
   };
 }
 
