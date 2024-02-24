@@ -1,16 +1,24 @@
+import Link from "next/link"
+
+import clsx from "clsx";
+
 
 export default function TypeIcon({ name, shortened } : { name: string, shortened?: boolean }) {
-  if (!!shortened) {
-    return (
-      <div>Shortened type</div>
-    )
-  }
+  const iconStyle = clsx(
+    `${name} flex justify-center items-center rounded border border-gray-300`,
+    {
+      "w-20 h-8" : !shortened,
+      "w-8 h-8 md:w-10 md:h-10" : shortened,
+    }
+  );
 
   return (
-    <div className={`${name} flex justify-center items-center w-20 h-7 rounded border border-gray-300`}>
-      <span className="text-xs text-white font-semibold text-shadow">
-        {name.toUpperCase()}
-      </span>
-    </div>
+    <Link href={`/types/${name}`} className="hover:brightness-90">
+      <div className={iconStyle}>
+        <span className="text-xs md:text-sm text-white font-semibold text-shadow">
+          {shortened ? name.slice(0, 3).toUpperCase() : name.toUpperCase()}
+        </span>
+      </div>
+    </Link>
   )
 }
