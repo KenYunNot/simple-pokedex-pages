@@ -39,5 +39,5 @@ export type Pokemon = {
   left: AdjacentPokemon | null,
   right: AdjacentPokemon | null,
   is_default: boolean,
-  types: Type[],
+  types: TypeWithRelations[],
 }
