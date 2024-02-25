@@ -9,12 +9,10 @@ export type TypeWithRelations = {
   no_damage_to: Type[],
 } & Type;
 
-// In all use cases, if the fields are null the DexPointer itself will be represented as null.
-// This is only to satisfy the Typescript conditions
 export type AdjacentPokemon = {
   id: number,
-  name: string | null,
-  full_name: string | null,
+  name: string
+  full_name: string,
 };
 
 export type PokemonBasic = {
