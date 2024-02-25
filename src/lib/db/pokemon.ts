@@ -105,15 +105,15 @@ export async function fetchPokemonByName(name: string): Promise<Pokemon | null> 
   if (pokemon.id > 1) {
     left = {
       id: pokemon.id-1,
-      name: pokemon.species.left_name,
-      full_name: pokemon.species.left_full_name,
+      name: String(pokemon.species.left_name),
+      full_name: String(pokemon.species.left_full_name),
     }
   }
   if (pokemon.id < count) {
     right = {
       id: pokemon.id+1,
-      name: pokemon.species.right_name,
-      full_name: pokemon.species.right_full_name,
+      name: String(pokemon.species.right_name),
+      full_name: String(pokemon.species.right_full_name),
     }
   }
 
