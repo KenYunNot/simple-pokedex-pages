@@ -49,7 +49,7 @@ export default function PokedexEntry({ pokemon }: { pokemon: Pokemon | null }) {
         {pokemon.types.map((type) => {
           return (
             <Fragment key={type.id}>
-              <TypeIcon name={type.name} />
+              <TypeIcon name={type.name} link={true} />
             </Fragment>
           );
         })}
@@ -77,7 +77,7 @@ function AdjacentLink({
     "flex items-center px-1 text-blue-600 hover:bg-gray-200 hover:underline",
     {
       "float-left rounded-l-lg" : direction === 'left',
-      "float-right rouned-r-lg" : direction === 'right',
+      "float-right rounded-r-lg" : direction === 'right',
     }
   )
 
