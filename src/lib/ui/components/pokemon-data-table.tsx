@@ -1,5 +1,5 @@
 import type { Pokemon } from "@/lib/types/pokemon";
-import { capitalize } from "@/lib/utils";
+import { capitalizeEach } from "@/lib/utils";
 
 /**
  * Display a table containing basic data about the Pokemon
@@ -21,7 +21,7 @@ export default function PokemonDataTable({ pokemon }: { pokemon: Pokemon }) {
       </div>
       <div>
         <h3 className="text-white font-semibold">Abilities</h3>
-        <p className="text-xl">{capitalize(pokemon.abilities[0])}</p>
+        <p className="text-xl">{capitalizeEach(pokemon.abilities[0], "-")}</p>
       </div>
       <div className="col-span-2">
         <h3 className="text-white font-semibold">Gender</h3>
