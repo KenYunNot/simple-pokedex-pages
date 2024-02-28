@@ -143,3 +143,17 @@ export async function countPokemon() {
   const count = await prisma.pokemon.count();
   return count;
 }
+
+/**
+ * Count the total number of Pokemon record pages based on a query string
+ */
+export async function countPokemonPages(query: string) {
+  const count = await prisma.pokemon.count({
+    where: {
+      name: {
+        contains: query,
+      }
+    }
+  });
+  return Math.ceil(count / ITEMS_PER_PAGE);
+}
