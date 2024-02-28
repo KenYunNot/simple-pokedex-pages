@@ -8,7 +8,7 @@ export default function TypeIcon({ name, shortened, link } : { name: string, sho
     `${name} flex justify-center items-center rounded border border-gray-300 text-[10px] text-white font-semibold text-shadow\
       hover:brightness-90`,
     {
-      "w-20 h-8" : !shortened,
+      "w-[72px] h-7" : !shortened,
       "w-7 h-7 md:w-10 md:h-10 md:text-sm" : shortened,
     }
   );
