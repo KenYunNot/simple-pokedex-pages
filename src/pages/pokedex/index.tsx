@@ -15,7 +15,7 @@ export default function Pokedex({
     <div className="grid grid-cols-1 gap-2">
       {pokemonList.map((pokemon) => {
         return (
-          <Link href={`/pokedex/${pokemon.name}`} key={pokemon.id}>
+          <Link key={pokemon.id} href={`/pokedex/${pokemon.name}`}>
             <PokemonCard pokemon={pokemon} />
           </Link>
         );
