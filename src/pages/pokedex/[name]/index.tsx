@@ -34,7 +34,7 @@ export default function PokedexEntry({ pokemon }: { pokemon: Pokemon | null }) {
       </div>
       <h1 className="pb-3 text-3xl text-center font-semibold">
         {pokemon.full_name}
-        <span className="block text-gray-400">
+        <span className="block text-gray-500">
           #{String(pokemon.id).padStart(4, "0")}
         </span>
       </h1>
