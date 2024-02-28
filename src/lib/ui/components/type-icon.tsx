@@ -3,22 +3,29 @@ import Link from "next/link"
 import clsx from "clsx";
 
 
-export default function TypeIcon({ name, shortened } : { name: string, shortened?: boolean }) {
+export default function TypeIcon({ name, shortened, link } : { name: string, shortened?: boolean, link?: boolean }) {
   const iconStyle = clsx(
-    `${name} flex justify-center items-center rounded border border-gray-300`,
+    `${name} flex justify-center items-center rounded border border-gray-300 text-[10px] text-white font-semibold text-shadow\
+      hover:brightness-90`,
     {
       "w-20 h-8" : !shortened,
-      "w-8 h-8 md:w-10 md:h-10" : shortened,
+      "w-7 h-7 md:w-10 md:h-10 md:text-sm" : shortened,
     }
   );
 
+  if (!link) {
+    return (
+      <span className={iconStyle}>
+        {shortened ? name.slice(0, 3).toUpperCase() : name.toUpperCase()}
+      </span>
+    )
+  }
+
   return (
-    <Link href={`/types/${name}`} className="hover:brightness-90">
-      <div className={iconStyle}>
-        <span className="text-xs md:text-sm text-white font-semibold text-shadow">
-          {shortened ? name.slice(0, 3).toUpperCase() : name.toUpperCase()}
-        </span>
-      </div>
+    <Link href={`/types/${name}`}>
+      <span className={iconStyle}>
+        {shortened ? name.slice(0, 3).toUpperCase() : name.toUpperCase()}
+      </span>
     </Link>
   )
 }
