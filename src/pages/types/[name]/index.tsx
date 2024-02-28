@@ -10,6 +10,7 @@ import NotFound from "@/pages/404";
 import TypeIcon from "@/lib/ui/components/type-icon";
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/16/solid";
 
+import { fetchTypeNames } from "@/lib/db/type";
 import { capitalizeEach } from "@/lib/utils";
 
 export default function TypeEntry({
@@ -111,10 +112,9 @@ export async function getStaticPaths(context: GetStaticPathsContext) {
     typeList: string[];
   };
 
-  const response = await fetch("http://localhost:3000/api/types");
-  const data: Data = await response.json();
+  const data: string[] = await fetchTypeNames();
 
-  const types = data.typeList.map((type) => {
+  const types = data.map((type) => {
     return { params: { name: type } };
   });
 
