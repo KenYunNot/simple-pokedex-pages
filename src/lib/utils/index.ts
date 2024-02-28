@@ -45,3 +45,28 @@ export function getTypeDefenses(types: TypeWithRelations[]): { [key: string] : n
   
   return typeDefenses;
 }
+
+/**
+ * Generate an array of numbers used as the base for the pagination component
+ * @param currentPage The current active page number
+ * @param totalPages The total number of pages
+ */
+export function generatePagination(currentPage: number, totalPages: number): number[] {
+   // If the total number of pages is less than or equal to 5, display all the page numbers
+   if (totalPages <= 7) {
+    return Array.from({ length: totalPages }, (_, i) => i);
+  }
+
+  // If the current page is less than or equal to 3, display the first 5 pages
+  if (currentPage <= 4) {
+    return [1, 2, 3, 4, 5, 6, 7];
+  }
+
+  // If the current page is greater than or equal to totalPages-4, display the last 7 pages
+  if (currentPage >= totalPages-4) {
+    return Array.from({ length: 7 }, (_, i) => (i+1) + totalPages-7) // Adding i+1 because pages start from 1, not 0
+  }
+
+  // Else, return the page and its two adjacent pages on both sides
+  return [ currentPage-3, currentPage-2, currentPage-1, currentPage, currentPage+1, currentPage+2, currentPage+3 ];
+}
