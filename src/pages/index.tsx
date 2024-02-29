@@ -47,22 +47,24 @@ export default function Home({
         </p>
       </section>
       <h2 className="text-2xl font-bold pb-4">Quick Links!</h2>
-      <section className="flex flex-col gap-6">
-        <div className="grid grid-cols-1 md:grid-cols-2">
+      <section className="flex flex-col gap-6  max-w-xs">
+        <ul className="grid grid-cols-1 gap-0.5 md:grid-cols-2">
           {firstTenPokemon.map((pokemon) => {
             return (
-              <Link
-                key={pokemon.name}
-                href={`/pokedex/${pokemon.name}`}
-                className="text-blue-500 hover:underline"
-              >
-                #{String(pokemon.id).padStart(4, '0')}
+              <li key={pokemon.id} className="text-sm">
+                <span className="text-gray-500">#{String(pokemon.id).padStart(4, '0')}</span>
                 {" "}
-                {pokemon.full_name}
-              </Link>
+                <Link
+                  key={pokemon.name}
+                  href={`/pokedex/${pokemon.name}`}
+                  className="text-blue-500 hover:underline"
+                >
+                  {pokemon.full_name}
+                </Link>
+              </li>
             );
           })}
-        </div>
+        </ul>
         <div className="flex flex-wrap justify-center gap-[2px]">
           {typeNames.map(name => {
             return (
