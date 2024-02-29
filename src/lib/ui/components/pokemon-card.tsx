@@ -1,10 +1,10 @@
 import Image from "next/image";
 import { Fragment } from "react";
 
-import { PokemonBasic } from "@/lib/types/pokemon";
+import { CardData } from "@/lib/types/pokemon";
 import TypeIcon from "./type-icon";
 
-export default function PokemonCard({ pokemon }: { pokemon: PokemonBasic }) {
+export default function PokemonCard({ pokemon }: { pokemon: CardData }) {
   return (
     <div className="relative flex flex-col border-2 p-3 rounded-md">
       <h2 className="w-full text-xl font-semibold">{pokemon.full_name}</h2>
