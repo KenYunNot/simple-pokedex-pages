@@ -5,6 +5,7 @@ import prisma from "@/lib/db/prisma";
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
+import clsx from "clsx";
 
 import NotFound from "@/pages/404";
 import PokemonDataTable from "@/lib/ui/components/pokemon-data-table";
@@ -13,8 +14,6 @@ import TypeIcon from "@/lib/ui/components/type-icon";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/16/solid/index.js";
 
 import { fetchPokemonByName } from "@/lib/db/pokemon";
-
-import clsx from "clsx";
 
 
 export default function PokedexEntry({ pokemon }: { pokemon: Pokemon | null }) {
