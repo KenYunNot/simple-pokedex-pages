@@ -1,13 +1,13 @@
 import type { Type } from "@prisma/client";
 import type { TypeWithRelations } from "./type";
 
-export type AdjacentPokemon = {
+export type PokemonBasic = {
   id: number,
   name: string
   full_name: string,
 };
 
-export type PokemonBasic = {
+export type CardData = {
   id: number,
   name: string,
   full_name: string,
@@ -26,8 +26,8 @@ export type Pokemon = {
   genus: string,
   flavor_texts: string[],
   gender_rate: number,
-  left: AdjacentPokemon | null,
-  right: AdjacentPokemon | null,
+  left: PokemonBasic | null,
+  right: PokemonBasic | null,
   is_default: boolean,
   types: TypeWithRelations[],
 }

@@ -1,5 +1,5 @@
 import type { GetStaticPropsContext } from "next";
-import type { AdjacentPokemon, Pokemon } from "@/lib/types/pokemon";
+import type { Pokemon, PokemonBasic } from "@/lib/types/pokemon";
 
 import prisma from "@/lib/db/prisma";
 import Image from "next/image";
@@ -15,7 +15,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/16/solid/ind
 
 import { fetchPokemonByName } from "@/lib/db/pokemon";
 
-
+  
 export default function PokedexEntry({ pokemon }: { pokemon: Pokemon | null }) {
   if (!pokemon) {
     return <NotFound />;
@@ -70,7 +70,7 @@ function AdjacentLink({
   adjPokemon 
 } : { 
   direction: "left" | "right", 
-  adjPokemon: AdjacentPokemon 
+  adjPokemon: PokemonBasic, 
 }) {
   const linkStyle = clsx(
     "flex items-center px-1 text-blue-600 hover:bg-gray-200 hover:underline",

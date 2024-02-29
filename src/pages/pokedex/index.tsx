@@ -1,5 +1,5 @@
 import type { GetServerSidePropsContext } from "next";
-import type { PokemonBasic } from "@/lib/types/pokemon";
+import type { CardData } from "@/lib/types/pokemon";
 
 import Link from "next/link";
 
@@ -14,7 +14,7 @@ export default function Pokedex({
   pokemonList,
   totalPages,
 }: {
-  pokemonList: PokemonBasic[];
+  pokemonList: CardData[];
   totalPages: number,
 }) {
   return (
