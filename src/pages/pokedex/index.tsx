@@ -18,15 +18,17 @@ export default function Pokedex({
   totalPages: number,
 }) {
   return (
-    <div className="grid grid-cols-1 gap-2">
+    <div className="flex flex-col justify-center gap-3">
       <Search placeholder="Search Pokemon..." />
-      {pokemonList.map((pokemon) => {
-        return (
-          <Link key={pokemon.id} href={`/pokedex/${pokemon.name}`}>
-            <PokemonCard pokemon={pokemon} />
-          </Link>
-        );
-      })}
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-3">
+        {pokemonList.map((pokemon) => {
+          return (
+            <Link key={pokemon.id} href={`/pokedex/${pokemon.name}`}>
+              <PokemonCard pokemon={pokemon} />
+            </Link>
+          );
+        })}
+      </div>
       <Pagination totalPages={totalPages} />
     </div>
   );
