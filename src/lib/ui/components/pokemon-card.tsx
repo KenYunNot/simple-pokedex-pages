@@ -6,7 +6,7 @@ import TypeIcon from "./type-icon";
 
 export default function PokemonCard({ pokemon }: { pokemon: CardData }) {
   return (
-    <div className="relative flex flex-col border-2 p-3 rounded-md">
+    <div className="relative flex flex-col justify-center items-center border-2 p-3 rounded-md">
       <h2 className="w-full text-xl font-semibold">{pokemon.full_name}</h2>
       <span className="absolute top-3 right-3 w-fit px-2 bg-red-500 rounded-full text-xl font-semibold text-white">
         {pokemon.id}
