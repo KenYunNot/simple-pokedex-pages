@@ -5,7 +5,7 @@ import clsx from "clsx";
 
 export default function TypeIcon({ name, shortened, link } : { name: string, shortened?: boolean, link?: boolean }) {
   const iconStyle = clsx(
-    `${name} flex justify-center items-center rounded border border-gray-300 text-[10px] text-white font-semibold text-shadow\
+    `${name} flex justify-center items-center rounded border border-black border-opacity-20 text-[11px] text-white font-semibold text-shadow\
       hover:brightness-90`,
     {
       "w-[72px] h-7" : !shortened,
