@@ -7,6 +7,9 @@ export async function fetchTypeNames(): Promise<string[]> {
   const types = await prisma.type.findMany({
     select: {
       name: true,
+    },
+    orderBy: {
+      id: "asc",
     }
   });
 
