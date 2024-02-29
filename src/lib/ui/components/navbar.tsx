@@ -46,16 +46,12 @@ function FullNavbar({
           width={300}
           height={167}
           alt="Simple Pokedex v3 logo"
+          priority={true}
         />
       </Link>
       <ul className="flex justify-center items-center">
         {links.map((link) => {
-          let isActive: boolean;
-          if (link.href === "/") {
-            isActive = pathname === link.href;
-          } else {
-            isActive = pathname.startsWith(link.href);
-          }
+          let isActive = link.href === pathname;
           return (
             <li key={link.href} className="w-24 h-full">
               <Link
@@ -98,6 +94,7 @@ function MobileNavbar({ className="" } : { className: string }) {
           width={200}
           height={65}
           alt="Simple Pokedex v3 logo"
+          priority={true}
         />
       </Link>
       <button onClick={() => setShowNav(!showNav)}>
