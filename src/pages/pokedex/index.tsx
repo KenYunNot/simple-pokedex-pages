@@ -36,7 +36,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { query } = context;
   const page = Number(query.page) || 1;
   const search = query.search ? String(query.search) : "";
-  console.log(page, search);
   
   const pokemonList = await fetchPokemonList(page, search);
   const totalPages = await countPokemonPages(search);
