@@ -1,8 +1,8 @@
 import prisma from "./prisma";
 
-import type { AdjacentPokemon, PokemonBasic, Pokemon } from "@/lib/types/pokemon";
+import type { Pokemon, PokemonBasic, CardData  } from "@/lib/types/pokemon";
 
-const ITEMS_PER_PAGE = 10;
+const ITEMS_PER_PAGE = 12;
 
 /**
  * Fetches a list of Pokemon representing one pagination page
@@ -10,7 +10,7 @@ const ITEMS_PER_PAGE = 10;
 export async function fetchPokemonList(
   page: number,
   search: string
-): Promise<PokemonBasic[]> {
+): Promise<CardData[]> {
 
   const OFFSET = ITEMS_PER_PAGE * (page - 1);
 
@@ -43,14 +43,14 @@ export async function fetchPokemonList(
   });
 
   // Spread nested objects for each record in the list and return the result
-  const pokemonList = listData.map((pokemon) => {
+  const pokemonList: CardData[] = listData.map((pokemon) => {
     return {
       id: pokemon.id,
       name: pokemon.name,
       full_name: pokemon.species.full_name,
       image_url: pokemon.image_url,
       types: pokemon.types,
-    } satisfies PokemonBasic;
+    } satisfies CardData;
   });
   return pokemonList;
 }
@@ -100,8 +100,8 @@ export async function fetchPokemonByName(name: string): Promise<Pokemon | null> 
   // If id is greater than 1, left will always exist
   // If id is less than count, right will always exist
   const count = await countPokemon();
-  let left: AdjacentPokemon | null = null;
-  let right: AdjacentPokemon | null = null;
+  let left: PokemonBasic | null = null;
+  let right: PokemonBasic | null = null;
   if (pokemon.id > 1) {
     left = {
       id: pokemon.id-1,
