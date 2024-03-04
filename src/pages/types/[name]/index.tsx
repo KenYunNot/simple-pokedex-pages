@@ -32,17 +32,29 @@ export default function TypeEntry({
         <h2 className="font-semibold">
           Attack <span className="text-gray-500">pros & cons</span>
         </h2>
-        {!!type.double_damage_to.length && <TypeEffectiveness direction="attack" relation="double" types={type.double_damage_to} name={capitalizedTypeName} />}
-        {!!type.half_damage_to.length && <TypeEffectiveness direction="attack" relation="half" types={type.half_damage_to} name={capitalizedTypeName} />}
-        {!!type.no_damage_to.length && <TypeEffectiveness direction="attack" relation="no" types={type.no_damage_to} name={capitalizedTypeName} />}
+        {type.double_damage_to.length > 0 && (
+          <TypeEffectiveness direction="attack" relation="double" types={type.double_damage_to} name={capitalizedTypeName} />
+        )}
+        {type.half_damage_to.length > 0 && (
+          <TypeEffectiveness direction="attack" relation="half" types={type.half_damage_to} name={capitalizedTypeName} />
+        )}
+        {type.no_damage_to.length > 0 && (
+          <TypeEffectiveness direction="attack" relation="no" types={type.no_damage_to} name={capitalizedTypeName} />
+        )}
       </div>
       <div className="pt-4">
         <h2 className="font-semibold">
           Defense <span className="text-gray-500">pros & cons</span>
         </h2>
-        {!!type.no_damage_from.length && <TypeEffectiveness direction="defense" relation="no" types={type.no_damage_from} name={capitalizedTypeName} />}
-        {!!type.half_damage_from.length && <TypeEffectiveness direction="defense" relation="half" types={type.half_damage_from} name={capitalizedTypeName} />}
-        {!!type.double_damage_from.length && <TypeEffectiveness direction="defense" relation="double" types={type.double_damage_from} name={capitalizedTypeName} />}
+        {type.no_damage_from.length > 0 && (
+          <TypeEffectiveness direction="defense" relation="no" types={type.no_damage_from} name={capitalizedTypeName} />
+        )}
+        {type.half_damage_from.length > 0 && (
+          <TypeEffectiveness direction="defense" relation="half" types={type.half_damage_from} name={capitalizedTypeName} />
+        )}
+        {type.double_damage_from.length > 0 && (
+          <TypeEffectiveness direction="defense" relation="double" types={type.double_damage_from} name={capitalizedTypeName} />
+        )}
       </div>
     </div>
   );
@@ -106,6 +118,7 @@ function TypeList({ types }: { types: Type[] }) {
     </div>
   );
 }
+
 
 export async function getStaticPaths(context: GetStaticPathsContext) {
   type Data = {
