@@ -68,7 +68,7 @@ export default function Home({
         <div className="flex flex-wrap justify-center gap-[2px]">
           {typeNames.map(name => {
             return (
-              <Fragment>
+              <Fragment key={name}>
                 <TypeIcon name={name} link={true} />
               </Fragment>
             )
